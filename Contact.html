@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Contact</title>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	.Container{
+		width: 100%;
+		height: 100vh;
+		background: black;
+		background-position: center;
+		background-size: cover;
+		box-sizing: border-box;
+	}
+	.logo{
+		height: 50px;
+		width: 50px;
+		border-radius: 30px;
+		cursor: pointer;
+		box-sizing: border-box;
+		margin: 20px 30px;
+
+	}
+	nav{
+		border: none;
+		float: right;
+
+
+	}
+	nav ul li{
+		display: inline-block;
+		padding: 35px 25px;
+		
+
+	}
+	nav ul li a{
+		text-decoration: none;
+		color: white;
+		font-size: 20px;
+	}
+	.Header{
+		text-align: center;
+		padding: 180px; 
+		color: white;
+		font-size: 50px;
+		font-weight: 500px;
+		margin-left: -150px;
+		display: flex;
+	}
+	.Header h1{
+		flex-basis: 60%;
+	}
+	.pic{
+		height: 400px;
+		width: 300px;
+		margin-top: -100px;
+		margin-left: 250px;
+
+
+	}
+	.Picture{
+		display: inline-flex;
+
+	}
+	.Contact h1{
+		color: white;
+	}
+	.Contact{
+		margin-top: -550px;
+		height: 480px;
+		width: 500px;
+		border: 1px solid #ff004f;
+		margin-left: 450px;
+		text-align: center;
+		padding: 15px 25px;
+	}
+	form input,form textarea{
+		width: 100%;
+		border: 0;
+		outline: none;
+		background: #262626;
+		padding: 15px;
+		margin: 15px 0;
+		color: #fff;
+		font-size: 18px;
+		border-radius: 6px;
+		
+	}
+	.Btn{
+		width: 150px;
+		height: 60px;
+		border-radius: 40px;
+		background: #ff004f;
+		color: white;
+		font-size: 20px;
+		font-weight: 600;
+		cursor: pointer;
+		transition:color,background 0.5s;
+	}
+	.Btn:hover{
+		color: #ff004f;
+		background: white;
+		transform: scale(1.1);
+	}
+	#Msg{
+		color: green;
+		margin-top: -40px;
+		margin-left: 450px;
+
+	}
+</style>
+</head>
+<body>
+<div class="Container">
+	<a href="Defence Day.html"target=_blank><img src="logo2.jpg" class="logo"></a>
+	<nav>
+		
+		<ul>
+			<li><a href="Defence Day.html"target=_blank>Home</a></li>
+			<li><a href="About.html"target=_blank>About</a></li>
+			<li><a href="History.html"target=_blank>History</a></li>
+			<li><a href="Martyers.html"target=_blank>Martyers</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</nav>
+	</div>
+	<div class="Contact"><h1>Contact Us</h1>
+		<form name="submit-to-google-sheet">
+						<input type="Text" name="Name" placeholder="Your Name" required><br>
+						<input type="email" name="Email" placeholder="Your Email" required><br>
+						<textarea name="Message" rows="6" placeholder="Your Message"></textarea><br>
+						<button type="Submit" class="Btn">Submit</button>
+
+
+
+		</div>
+		<span id="Msg"></span>
+		<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbydz_eHl6WE9ZVBqlU04bBZLQJMaHBFQfjNfR0y4VtbcVdtaw33o5yZu7O1mmu7_4HbRw/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const Msg = document.getElementByid('Msg')
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+      	Msg.innerHTML = "Message Sent Successfuly"
+      	setTimeout(function(){
+      		Msg.innerHTML = ""
+      	},5000)
+      	form.reset()
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+</body>
+</html>
